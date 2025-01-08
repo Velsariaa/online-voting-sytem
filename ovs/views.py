@@ -3,20 +3,18 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.views.decorators.cache import never_cache
-from django.http import HttpResponseRedirect
-from django.urls import reverse
 from .forms import (
     adminnform as AdminForm,
     registrationform as RegistrationForm,
     loginform as LoginForm,
     contactform as ContactForm,
-    candidacyform as CandidacyForm,
+    Candidacyform as CandidacyForm,
     credentialsform as CredentialsForm,
     resetpass as ResetPass,
     comelecform as ComelecForm,
     voteform as voteform,
 )
+from .forms import CandidateForm
 from .models import comelecform, adminnform, candidacy_form, Candidate, voteform
 
 # admin
@@ -106,14 +104,8 @@ def registration_form_view(request):
 
 
 # Login view for all users (Admin, COMELEC, User)
-@never_cache
 def login_form_view(request):
-  
-    if request.user.is_authenticated:
-        return redirect('user')  
-
     form = LoginForm()
-
     if request.method == 'POST':
         uid = request.POST.get('uid')  # User ID from form
         password = request.POST.get('password')  # Password from form
@@ -168,47 +160,37 @@ def contact_form_view(request):
 def candidacy_form_view(request):
     form = CandidacyForm()
 
-    # Fetch all admin form entries
+    # Fetch all admin form entries (if needed)
     admin_forms = adminnform.objects.all()
     position_list = []
 
-    # Extract positions from each admin form entry
     for admin_form in admin_forms:
         if admin_form.positions:
-            positions = admin_form.positions.split(',')  # Split positions by comma
-            position_list.extend([pos.strip() for pos in positions])  # Add to the list
+            positions = admin_form.positions.split(',')
+            position_list.extend([pos.strip() for pos in positions])
 
-    # Collect the "OTHERS" positions from the admin form fields
-    others_positions = []
-    others_fields = [
-        ('others1', admin_form.others1),
-        ('others2', admin_form.others2),
-        ('others3', admin_form.others3),
-        ('others4', admin_form.others4),
-        ('others5', admin_form.others5),
-    ]
+    others_positions = ['Others', 'President', 'Kagawad!', 'SK', 'Chairman']
+    others_fields = ['others1', 'others2', 'others3', 'others4', 'others5']
 
-    # Append the content of the "OTHERS" fields to the list
-    for _, other_value in others_fields:
-        if other_value:
-            others_positions.append(other_value.strip())  # Add to "OTHERS" list
+    for admin_form in admin_forms:
+        for field_name in others_fields:
+            other_value = getattr(admin_form, field_name, None)
+            if other_value:
+                others_positions.append(other_value.strip())
 
-    # Ensure "OTHERS" come first in the list, maintaining the order in which they were checked
-    position_list = others_positions + position_list  # "OTHERS" come first
-
-    # Remove duplicates if any
+    position_list = others_positions + position_list
     position_list = list(set(position_list))
 
-    # Pass the position list to the template context
     context = {'form': form, 'position_list': position_list}
 
     if request.method == 'POST':
-        form = CandidacyForm(request.POST)
+        form = CandidacyForm(request.POST, request.FILES)  # Make sure to pass request.FILES for file uploads
         if form.is_valid():
-            form.save()
+            form.save()  # Save the form data to the database
             return redirect('index')
 
     return render(request, 'candidacyform.html', context)
+
 
 # Credentials form view
 def credentials_form_view(request):
@@ -247,16 +229,7 @@ def reset_form_view(request):
 # Protected User Dashboard
 @login_required(login_url='loginform')
 def user(request):
-    try:
-        user_details = comelecform.objects.get(uid=request.user.username)
-        context = {
-            'user_details': user_details
-        }
-    except comelecform.DoesNotExist:
-        messages.error(request, "User details not found")
-        context = {}
-    
-    return render(request, 'usermain.html', context)
+    return render(request, 'usermain.html')
 
 
 # Protected Voting View
@@ -312,7 +285,6 @@ def vote(request):
     candidates_position_3 = Candidate.objects.filter(position="Position 3")
 
     if request.method == "POST":
-        # Collect the vote choices
         vote1_id = request.POST.get('vote1')
         vote2_id = request.POST.get('vote2')
         vote3_id = request.POST.get('vote3')

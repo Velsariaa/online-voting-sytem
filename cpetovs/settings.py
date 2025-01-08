@@ -55,7 +55,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'cpetovs.urls'
 # STATIC_ROOT = 'C:/Users/daphny deligero/Desktop/codenew/cpetovs/ovs'
-STATIC_ROOT = 'C:/Users/kenny/Downloads/cpetovs/ovs'
+# STATIC_ROOT = 'C:/Users/kenny/Downloads/cpetovs/ovs'
+STATIC_ROOT = 'C:/xampp/htdocs/online-voting-system/cpetovs/ovs'
 
 TEMPLATES = [
     {

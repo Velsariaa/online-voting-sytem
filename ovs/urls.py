@@ -22,4 +22,6 @@ urlpatterns = [
     path('manage-movies/', views.dashboard, name='manage_movies'),  # Placeholder for Manage Movies view
     path('user-table/', views.dashboard, name='user_table'),  # Placeholder for User Table view
     path('logout/', views.logoutUser, name='logout'),
+    path('candidacy-form/', views.candidacy_form_view, name='candidacy_form'),
+    
 ]

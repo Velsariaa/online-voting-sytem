@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.hashers import check_password
+from django.utils import timezone
 
 class adminnform(models.Model):
     institute = models.CharField(max_length=255)
@@ -158,14 +159,20 @@ class UserInfo(models.Model):
     def __str__(self):
         return self.username
     
-
 class Candidate(models.Model):
-    name = models.CharField(max_length=200)
-    position = models.CharField(max_length=100)
-    photo = models.ImageField(upload_to='candidates/')
+    fullname = models.CharField(max_length=100, default='John Doe')
+    cotn = models.CharField(max_length=15, default='N/A')  # Default value for 'cotn'
+    emailaddr = models.EmailField(default = 'N/A')
+    birth = models.DateField(default=timezone.now)  # Default value for 'birth' as the current date
+    position = models.CharField(max_length=50, default='Unknown')  # Default position
+    statement = models.TextField(blank=True, null=True, default='No statement provided')  # Default value for statement
+    credential1 = models.FileField(upload_to='credentials/', blank=True, null=True)
+    credential2 = models.FileField(upload_to='credentials/', blank=True, null=True)
+    credential3 = models.FileField(upload_to='credentials/', blank=True, null=True)
+    credential4 = models.FileField(upload_to='credentials/', blank=True, null=True)
 
     def __str__(self):
-        return self.name
+        return self.fullname
 
 # Vote model for storing votes submitted by users
 class voteform(models.Model):
@@ -177,3 +184,4 @@ class voteform(models.Model):
 
     def __str__(self):
         return f"Vote by User {self.voter_id} at {self.timestamp}"
+    
