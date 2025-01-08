@@ -18,7 +18,7 @@ from .forms import CandidateForm
 from .models import comelecform, adminnform, candidacy_form, Candidate, voteform
 
 # admin
-@login_required(login_url='loginform')
+#@login_required(login_url='loginform')
 def admin_form_view(request):
     if request.session.get('role') != 'admin':
         return redirect('loginform')
@@ -132,6 +132,8 @@ def login_form_view(request):
     else:
         form = LoginForm()  # Render empty form on GET requests
 
+    print(request.session.items())
+
     return render(request, 'loginform.html', {'form': form})
 
 
@@ -238,7 +240,6 @@ def vote(request):
     return render(request, 'voteform.html')
 
 #comelec
-@login_required(login_url='loginform')
 def user_management_view(request):
     if request.session.get('role') != 'comelec':
         return redirect('loginform')  # Restrict non-COMELEC access
