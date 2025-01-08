@@ -238,7 +238,16 @@ def reset_form_view(request):
 # Protected User Dashboard
 @login_required(login_url='loginform')
 def user(request):
-    return render(request, 'usermain.html')
+    try:
+        user_details = comelecform.objects.get(uid=request.user.username)
+        context = {
+            'user_details': user_details
+        }
+    except comelecform.DoesNotExist:
+        messages.error(request, "User details not found")
+        context = {}
+    
+    return render(request, 'usermain.html', context)
 
 
 # Protected Voting View
