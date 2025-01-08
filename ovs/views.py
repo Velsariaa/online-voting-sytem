@@ -16,6 +16,9 @@ from .forms import (
 )
 from .forms import CandidateForm
 from .models import comelecform, adminnform, candidacy_form, Candidate, voteform
+from django.views.decorators.cache import never_cache
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 # admin
 #@login_required(login_url='loginform')
@@ -104,7 +107,12 @@ def registration_form_view(request):
 
 
 # Login view for all users (Admin, COMELEC, User)
+@never_cache
 def login_form_view(request):
+
+    if request.user.is_authenticated:
+        return redirect('user')  
+    
     form = LoginForm()
     if request.method == 'POST':
         uid = request.POST.get('uid')  # User ID from form
@@ -115,7 +123,7 @@ def login_form_view(request):
             request.session['role'] = 'admin'  # Save role in session
             return redirect('adminnform')  # Redirect to Admin Main Page
 
-        # COMELEC credentials
+        # COMELEC credentialsdef userl
         elif uid == "comelec" and password == "comelec":
             request.session['role'] = 'comelec'  # Save role in session
             return redirect('comelec')  # Redirect to COMELEC Page
@@ -231,7 +239,16 @@ def reset_form_view(request):
 # Protected User Dashboard
 @login_required(login_url='loginform')
 def user(request):
-    return render(request, 'usermain.html')
+    try:
+        user_details = comelecform.objects.get(uid=request.user.username)
+        context = {
+            'user_details': user_details
+        }
+    except comelecform.DoesNotExist:
+        messages.error(request, "User details not found")
+        context = {}
+    
+    return render(request, 'usermain.html', context)
 
 
 # Protected Voting View
@@ -322,6 +339,9 @@ def dashboard(request):
 
 # Index (homepage) view
 def index(request):
+    if request.user.is_authenticated:
+        return redirect('user')  
+
     return render(request, 'homepage.html')
 
 
