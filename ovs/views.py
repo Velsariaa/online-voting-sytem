@@ -22,7 +22,9 @@ from django.urls import reverse
 
 # admin
 #@login_required(login_url='loginform')
+#@never_cache
 def admin_form_view(request):
+
     if request.session.get('role') != 'admin':
         return redirect('loginform')
 
@@ -244,8 +246,16 @@ def reset_form_view(request):
 
 
 # Protected User Dashboard
+
 @login_required(login_url='loginform')
+@never_cache
 def user(request):
+
+    if request.user.is_authenticated == False:
+        
+        print("redirecting")
+        return redirect('loginform') 
+     
     try:
         user_details = comelecform.objects.get(uid=request.user.username)
         context = {
