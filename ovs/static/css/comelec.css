@@ -1,0 +1,55 @@
+body {
+    background-color: #033e63;
+}
+
+.container {
+    background-color: #033e63;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.userdetails, .userdata {
+    font-size: 1.3em;
+    color: rgba(0, 61, 96, 1);
+    font-family: 'Anton';
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.form-control, .card {
+    font-family: 'Kanit';
+    color: rgba(0, 61, 96, 1);
+}
+
+.card {
+    background-color: #f9f4e7;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.table thead th {
+    background-color: rgba(0, 61, 96, 1);
+    color: #033e63;
+    font-size: 0.9em;
+    text-transform: uppercase;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(240, 234, 222, 0.7);
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+    background-color: #f9f4e7;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .userdetails, .userdata {
+        font-size: 1.1em;
+    }
+    .form-control {
+        font-size: 0.9em;
+    }
+}
+

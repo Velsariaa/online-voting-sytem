@@ -1,0 +1,355 @@
+body {
+  background-color: rgba(0, 61, 96, 1);
+}
+
+@font-face {
+  font-family: 'Anton';
+  src:  url('fonts/Anton-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Kanit';
+  src: url('fonts/Kanit-Regular.ttf') format('truetype'),
+  url('fonts/Kanit-SemiBold.ttf') format('truetype');
+
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('fonts/Inter-SemiBold.ttf') format('truetype');
+}
+
+/*navbar*/
+.navbar {
+  position: relative;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-logo {
+    width: 3rem;
+    height: 3rem;
+    margin-top: 1vh;
+    margin-left: 2rem;
+}
+
+.nav-link {
+  font-size: 1.5rem; 
+  font-family: 'Anton';
+  font-weight: 'Regular';
+  color: rgba(240, 234, 222, 1); 
+  margin-top: 1vh;
+  transition: color 0.3s;
+}
+
+.nav-link.custom-link:hover {
+  color: rgb(31, 104, 146);
+}
+
+.navbar-nav {
+  display: flex;
+  gap: 2vw; 
+  margin-right: 4vw; 
+}
+
+@media (max-width: 992px) {
+  .navbar-logo {
+      width: 69px;
+      height: 64px;
+      top: 28px;
+      left:50px;
+  }
+  .nav-link {
+      font-size: 1.5rem;
+      margin-top: 0.5vh;
+  }
+  .navbar-nav {
+      gap: 1.5vw;
+      margin-right: 2vw;
+  }
+}
+
+/*homeicon*/
+.home-icon1 {
+  width: 560px;  
+  height: 560px; 
+  position: relative;
+  top: 0;
+  left: 780px;
+}
+
+.container {
+  max-width: 100%;
+  max-height: 100vh; 
+  overflow: hidden;
+}
+
+@media (max-width: 1200px) { 
+  .home-icon1 {
+      width: 100%;
+      height: auto;
+  }
+}
+
+@media (max-width: 992px) { 
+  .home-icon1 {
+      width: 100%;
+      height: auto;
+  }
+}
+
+@media (max-width: 768px) { 
+  .home-icon1 {
+      width: 100%;
+      height: auto;
+  }
+}
+
+@media (max-width: 576px) { 
+  .home-icon1 {
+      width: 100%;
+      height: auto;
+  }
+}
+
+/*font*/
+.slogan {
+  width: 446px; 
+  color: rgba(240,234,222,1);
+  position: absolute;
+  top: 85px; 
+  left: 257px; 
+  font-family: 'Anton';
+  font-weight: 'Regular';
+  font-size: 24px; 
+  opacity: 1;
+  text-align: right;
+}
+
+@media (max-width: 1200px) { 
+  .slogan {
+    font-size: 25px;  
+    top: 18px;  
+    left: 12px; 
+  }
+}
+
+@media (max-width: 992px) {
+  .slogan {
+    font-size: 35px;  
+    top: 25px;  
+    left: 15px;  
+  }
+}
+
+@media (max-width: 768px) { 
+  .slogan {
+    font-size: 4px; 
+    top: 30px;  
+    left: 20px; 
+  }
+}
+
+@media (max-width: 576px) { 
+  .slogan {
+    font-size: 5px; 
+    top: 35px; 
+    left: 25px; 
+  }
+}
+
+.ovs1 {
+  width: 583px; 
+  color: rgba(240,234,222,1);
+  position: absolute;
+  top: 90px; 
+  left: 120px; 
+  font-family: 'Anton';
+  font-weight: 'Regular';
+  font-size: 140px; 
+  opacity: 1;
+  text-align: right;
+}
+
+@media (max-width: 1200px) { 
+  .ovs1 {
+    font-size: 12px; 
+    top: 28px;  
+    left: 12px; 
+  }
+}
+
+@media (max-width: 992px) { 
+  .ovs1 {
+    font-size: 14px;  
+    top: 30px;  
+    left: 15px; 
+  }
+}
+
+@media (max-width: 768px) { 
+  .ovs1 {
+    font-size: 16vw;  
+    top: 35vh;  
+    left: 18vw;  
+  }
+}
+
+@media (max-width: 576px) { 
+  .ovs1 {
+    font-size: 20px;  
+    top: 40px; 
+    left: 20px; 
+  }
+}
+
+.ovs2 {
+  width: 583px;
+  color: rgba(240,234,222,1);
+  position: absolute;
+  top: 235px; 
+  left: 122px; 
+  font-family: 'Anton';
+  font-weight: 'Regular';
+  font-size: 140px;
+  opacity: 1;
+  text-align: right;
+}
+@media (max-width: 1200px) { 
+  .ovs2 {
+    font-size: 12px; 
+    top: 28px;  
+    left: 12px; 
+  }
+}
+
+@media (max-width: 992px) { 
+  .ovs2 {
+    font-size: 14px;  
+    top: 30px;  
+    left: 15px;  
+  }
+}
+
+@media (max-width: 768px) { 
+  .ovs2 {
+    font-size: 16px;  
+    top: 35px;  
+    left: 18px;
+  }
+}
+
+@media (max-width: 576px) { 
+  .ovs2 {
+    font-size: 20px;  
+    top: 40px; 
+    left: 20px;  
+  }
+}
+
+.ovs3 {
+  width: 583px;
+  color: rgba(240,234,222,1);
+  position: absolute;
+  top: 380px; 
+  left: 122px; 
+  font-family: 'Anton';
+  font-weight: 'Regular';
+  font-size: 140px;
+  opacity: 1;
+  text-align: right;
+}
+@media (max-width: 1200px) { 
+  .ovs3 {
+    font-size: 12px; 
+    top: 28px;  
+    left: 12px; 
+  }
+}
+
+@media (max-width: 992px) { 
+  .ovs3 {
+    font-size: 14px;  
+    top: 30px;  
+    left: 15px;  
+  }
+}
+
+@media (max-width: 768px) { 
+  .ovs3 {
+    font-size: 16px;  
+    top: 35px;  
+    left: 18px;
+  }
+}
+
+@media (max-width: 576px) { 
+  .ovs3 {
+    font-size: 20px;  
+    top: 40px; 
+    left: 20px;  
+  }
+}
+
+.logbutton {
+  width: 235px;
+  height: 41px;
+  background: rgba(0,78,164,0);
+  opacity: 1;
+  position: absolute;
+  top: 560px;
+  left: 220px;
+  border: 2px solid rgba(240,234,222,1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+@media (max-width: 576px) { 
+  .logbutton {
+    font-size: 20px;  
+    top: 40px; 
+    left: 20px;  
+  }
+}
+
+.regbutton {
+  width: 235px;
+  height: 41px;
+  background: rgba(240,234,222,1);
+  opacity: 1;
+  position: absolute;
+  top: 560px;
+  left: 465px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+@media (max-width: 576px) {
+  .regbutton {
+    font-size: 20px;
+    top: 40px;
+    left: 20px;
+  }
+}
+
+.logbutton1 {
+  width: 73px;
+  color: rgba(240, 234, 222, 1);
+  position: absolute;
+  top: 563px;
+  left: 240px;
+  font-family: 'Kanit';
+  font-weight: 'Regular';
+  font-size: 24px;
+  opacity: 1;
+}
+
+@media (max-width: 576px) {
+  .logbutton1 {
+    font-size: 20px;
+    top: 40px;
+    left: 20px;
+  }
+}

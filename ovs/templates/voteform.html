@@ -1,0 +1,200 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOTING FORM</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f9f4e7;
+            font-family: 'Kanit', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar-custom {
+            background-color: #f9f4e7;
+        }
+        .voting-form {
+            padding: 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+            position: relative;
+        }
+        .voting-header h2, .voting-header h4 {
+            font-weight: 900;
+        }
+        .voting-header {
+            text-align: center;
+            font-weight: bold;
+            color: #b03a2e;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        .candidate-section {
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+        .candidate-title {
+            background-color: #1f3d64;
+            color: white;
+            padding: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 15px;
+            text-align: center;
+        }
+        .candidate {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .candidate img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+        }
+        .submit-btn {
+            background-color: #ff3e2e;
+            color: white;
+            font-weight: bold;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+
+        .ovs-font {
+            font-family: 'Anton';
+            font-weight: 'Regular';
+            font-size: 45px;
+        }
+
+        .voting-form-font {
+            font-family: 'Kanit';
+            font-weight: 'Regular';
+            font-size: 20px;
+        }
+        
+        /* Responsive styling */
+        @media (max-width: 768px) {
+            .candidate img {
+                width: 80px;
+                height: 80px;
+            }
+            .submit-btn {
+                position: static;
+                margin-top: 20px;
+                display: block;
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light navbar-custom">
+    <a class="navbar-brand" href="{% url 'index' %}">
+        <img src="{% static 'media/logo1.png' %}" width="60" height="60" alt="Logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="btn btn-outline-danger" href="{% url 'index' %}">RETURN TO HOME</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container voting-form">
+    <form method="post" action="{% url 'submitted' %}">
+        {% csrf_token %}
+        <div class="text-center voting-header">
+            <p><span class="ovs-font">ONLINE VOTING SYSTEM</span></p>
+            <p><span class="voting-form-font"> VOTING FORM</span></p>
+        </div>
+
+        <!-- Candidate Position 1 -->
+        <div class="candidate-section">
+            <div class="candidate-title">CANDIDATE POSITION 1</div>
+            <div class="row justify-content-center">
+                <div class="col-3 candidate">
+                    <label for="candidate1">
+                        <img src="{% static 'media/candpic.png' %}" alt="Candidate 1" onclick="document.getElementById('candidate1').checked = true;">
+                        <input type="radio" id="candidate1" name="vote1">
+                        CANDIDATE 1
+                    </label>
+                </div>
+                <div class="col-3 candidate">
+                    <label for="candidate2">
+                        <img src="{% static 'media/candpic.png' %}" alt="Candidate 2" onclick="document.getElementById('candidate2').checked = true;">
+                        <input type="radio" id="candidate2" name="vote1">
+                        CANDIDATE 2
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Candidate Position 2 -->
+        <div class="candidate-section">
+            <div class="candidate-title">CANDIDATE POSITION 2</div>
+            <div class="row justify-content-center">
+                <div class="col-3 candidate">
+                    <label for="candidate3">
+                        <img src="{% static 'media/candpic.png' %}" alt="Candidate 3" onclick="document.getElementById('candidate3').checked = true;">
+                        <input type="radio" id="candidate3" name="vote2">
+                        CANDIDATE 1
+                    </label>
+                </div>
+                <div class="col-3 candidate">
+                    <label for="candidate4">
+                        <img src="{% static 'media/candpic.png' %}" alt="Candidate 4" onclick="document.getElementById('candidate4').checked = true;">
+                        <input type="radio" id="candidate4" name="vote2">
+                        CANDIDATE 2
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Candidate Position 3 -->
+        <div class="candidate-section">
+            <div class="candidate-title">CANDIDATE POSITION 3</div>
+            <div class="row justify-content-center">
+                <div class="col-3 candidate">
+                    <label for="candidate5">
+                        <img src="{% static 'media/candpic.png' %}" alt="Candidate 5" onclick="document.getElementById('candidate5').checked = true;">
+                        <input type="radio" id="candidate5" name="vote3">
+                        CANDIDATE 1
+                    </label>
+                </div>
+                <div class="col-3 candidate">
+                    <label for="candidate6">
+                        <img src="{% static 'media/candpic.png' %}" alt="Candidate 6" onclick="document.getElementById('candidate6').checked = true;">
+                        <input type="radio" id="candidate6" name="vote3">
+                        CANDIDATE 2
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="submit-btn">SUBMIT VOTE</button>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

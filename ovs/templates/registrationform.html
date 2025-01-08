@@ -1,0 +1,193 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REGISTRATION</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #C9C8C8;
+            font-family: 'Kanit';
+
+        }
+        .form-container {
+            background-color: #003d66;
+            color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 900px;
+            margin: 40px auto;
+            border: 5px solid #41729f;
+        }
+        .header-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .header-container img {
+            max-width: 50px;
+            margin-right: 10px;
+        }
+        .header-container h2 {
+            color: #f05a28;
+            font-weight: bold;
+            margin: 0;
+            /* Embossed effect */
+            text-shadow: 1px 1px 2px #fff;
+            position: relative;
+        }
+        .form-container p {
+            font-size: 14px;
+            margin-top: -5px;
+        }
+        .form-container label {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .form-control {
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        .btn-custom {
+            background-color: #f4f2e9;
+            color: #033e63;
+            padding: 7px 14px;
+            border-radius: 5px;
+            border: 2px solid #f4f2e9;
+        }
+        .btn-custom:hover {
+            background-color: #d04a1e;
+        }
+        .btn-custom-hm {
+            border: 2px solid #f4f2e9;
+            background-color: transparent;
+            color: #f4f2e9;
+            border-radius: 5px;
+            padding: 7px 14px;
+        }
+        .btn-custom-hm:hover {
+            background-color: #e4e4e4;
+        }
+        .warning-text {
+            font-family: 'Kanit';
+            font-size: 1px;
+            color: #ccc;
+            margin-bottom: 2px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <div class="header-container">
+                <a class="navbar-brand" href="{% url 'index' %}">
+                <img src="{% static 'media/logo2.png' %}" alt="Logo"> <!-- Replace 'path/to/logo.png' with the actual path to the logo in your static files -->
+                </a>
+                <h2>REGISTRATION</h2>
+            </div>
+            <p>PLEASE FILL OUT THE FORM</p>
+
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label for="fname">FIRST NAME</label>
+                        <input type="text" class="form-control" id="fname" name="fname" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="uid">USER ID</label>
+                        <input type="text" class="form-control" id="uid" name="uid" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label for="mname">MIDDLE NAME</label>
+                        <input type="text" class="form-control" id="mname" name="mname" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="password">PASSWORD</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label for="lname">LAST NAME</label>
+                        <input type="text" class="form-control" id="lname" name="lname" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="confpass">RE-ENTER PASSWORD</label>
+                        <input type="password" class="form-control" id="confpass" name="confpass" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label for="idtype">ID TYPE</label>
+                        <select class="form-control" id="idtype" name="idtype" required>
+                            <option value="OPTION 1">OPTION 1</option>
+                            <option value="OPTION 2">OPTION 2</option>
+                            <option value="OPTION 3">OPTION 3</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="emailadd">EMAIL ADDRESS</label>
+                        <input type="email" class="form-control" id="emailadd" name="emailadd" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label for="idnum">ID NUMBER</label>
+                        <input type="text" class="form-control" id="idnum" name="idnum" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="contact">CONTACT NUMBER</label>
+                        <input type="text" class="form-control" id="contact" name="contact" maxlength="11" placeholder="09-123456789">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-4">
+                        <label for="age">AGE</label>
+                        <input type="text" class="form-control" id="age" name="age" maxlength="3" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="gender">SEX</label>
+                        <select class="form-control" id="gender" name="gender" required>
+                            <option value="">SELECT</option>
+                            <option value="MALE">MALE</option>
+                            <option value="FEMALE">FEMALE</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="suffix">SUFFIX</label>
+                        <select class="form-control" id="suffix" name="suffix" required>
+                            <option value="NONE">NONE</option>
+                            <option value="Sr.">Sr.</option>
+                            <option value="Jr.">Jr.</option>
+                            <option value="II">II</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-custom">REGISTER <a href="{% url 'resetpass' %}"></a></button>
+                <a href="{% url 'index' %}" class="btn btn-custom-hm">RETURN TO HOMEPAGE</a>
+            </form>
+            <br>
+            <p class="warning-text">
+                <i><b>WARNING: </b>
+                 Please be advised that providing false or inaccurate information on this registration form constitutes a violation of the <b>Republic Act No. 10173</b>, or the <b>Data Privacy Act of 2012</b>.
+                Any intentional misrepresentation may result in legal consequences, including but not limited to the suspension or revocation of your registration, and possible criminal charges.<br><br>
+               <b>If you already have an account please return to homepage. Thank you.</b></i>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

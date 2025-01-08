@@ -1,0 +1,254 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMIN DASHBOARD</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #033e63;
+            color: white;
+            font-family: 'Kanit', sans-serif;
+            font-weight: 400;
+        }
+        .left-section, .right-section {
+            min-height: 100vh;
+        }
+        .logo {
+            width: 60px;
+            height: 60px;
+        }
+        .title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .subtitle {
+            font-size: 0.9rem;
+            color: #ddd;
+        }
+        .welcome-message {
+            font-size: 1.3rem;
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+        }
+        .form-group label {
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        .form-control {
+            background-color: #ddd;
+            border: none;
+            border-radius: 5px;
+        }
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .form-check-inline {
+            display: flex;
+            align-items: center;
+        }
+        .form-check-inline .form-control {
+            height: calc(1.5em + 0.75rem + 2px); /* Match checkbox height */
+            margin-left: 0.5rem;
+            width: auto; /* Minimal width */
+        }
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+        .right-section {
+            background-color: #033e63;
+            padding: 2rem;
+        }
+        .right-section .form-group {
+            margin-bottom: 2rem;
+        }
+        .admin-title {
+            color: #ff4c4c;
+            font-weight: bold;
+            font-size: 2rem;
+            text-align: right;
+        }
+        .message-box {
+            margin-top: 2rem;
+        }
+        .message {
+            background-color: #444;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+        .message h4 {
+            color: #f8f9fa;
+        }
+        .message p {
+            color: #ddd;
+        }
+        .btn-info, .btn-primary, .btn-secondary {
+            margin-right: 1rem;
+        }
+        .btn-sm {
+            font-size: 0.8rem;
+            padding: 0.375rem 0.75rem;
+        }
+        .d-flex {
+            display: flex;
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Left Section -->
+            <div class="col-lg-7 left-section py-4 px-5">
+                <div class="d-flex align-items-center mb-3">
+                    <img src="{% static 'media/logo2.png' %}" alt="OVS Logo" class="logo me-3">
+                    <div>
+                        <h1 class="title mb-0">ONLINE VOTING SYSTEM</h1>
+                        <p class="subtitle mb-0">BE PART OF A DECISION VOTE TODAY!</p>
+                    </div>
+                </div>
+                <h2 class="welcome-message">WELCOME! XXXXXXX</h2>
+                <form method="POST" action="{% url 'adminnform' %}">
+                    {% csrf_token %}
+                    <div class="form-group mb-3">
+                        <label for="startdate">ELECTION START DATE:</label>
+                        <input type="date" id="startdate" name="startdate" class="form-control">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="enddate">ELECTION END DATE:</label>
+                        <input type="date" id="enddate" name="enddate" class="form-control">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="institute">INSTITUTE</label>
+                        <input type="text" id="institute" name="institute" class="form-control">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="position">POSITION:</label>
+                        <div class="checkbox-group">
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" id="pos1" name="position" value="PRESIDENT">
+                                <label class="form-check-label" for="pos1">PRESIDENT</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" id="pos2" name="position" value="VICE PRESIDENT">
+                                <label class="form-check-label" for="pos2">VICE PRESIDENT</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" id="pos3" name="position" value="SECRETARY">
+                                <label class="form-check-label" for="pos3">SECRETARY</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" id="pos4" name="position" value="TREASURER">
+                                <label class="form-check-label" for="pos4">TREASURER</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" id="pos5" name="position" value="AUDITOR">
+                                <label class="form-check-label" for="pos5">AUDITOR</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" id="others" name="position" value="OTHERS">
+                                <label class="form-check-label me-2" for="others">OTHERS:</label>
+                                <input type="text" id="otherInput" class="form-control" placeholder="INPUT HERE" disabled>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" id="others1">
+                                <label class="form-check-label me-2" for="others1">OTHERS:</label>
+                                <input type="text" id="otherInput1" name="others1" class="form-control" placeholder="INPUT HERE" disabled>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" id="others2">
+                                <label class="form-check-label me-2" for="others2">OTHERS:</label>
+                                <input type="text" id="otherInput2" name="others2" class="form-control" placeholder="INPUT HERE" disabled>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" id="others3">
+                                <label class="form-check-label me-2" for="others3">OTHERS:</label>
+                                <input type="text" id="otherInput3" name="others3" class="form-control" placeholder="INPUT HERE" disabled>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" id="others4">
+                                <label class="form-check-label me-2" for="others4">OTHERS:</label>
+                                <input type="text" id="otherInput4" name="others4" class="form-control" placeholder="INPUT HERE" disabled>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" id="others5">
+                                <label class="form-check-label me-2" for="others5">OTHERS:</label>
+                                <input type="text" id="otherInput5" name="others5" class="form-control" placeholder="INPUT HERE" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <button type="submit" class="btn btn-success btn-sm me-2">SUBMIT</button>
+                        <a href="{% url 'index' %}" class="btn btn-danger btn-sm" id="logout-button">LOG OUT</a>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Right Section (Message Box) -->
+            <div class="col-lg-5 right-section">
+                <div class="admin-title">ADMIN</div>
+
+                <!-- Message Box Section -->
+                <div class="message-box">
+                    <h4>Reports List</h4>
+                    {% if reports %}
+                        {% for report in reports %}
+                            <div class="message">
+                                <h4>{{ report.subject }} (from {{ report.sender.username }})</h4>
+                                <p><strong>Message:</strong> {{ report.message }}</p>
+                                <p><strong>Received on:</strong> {{ report.sent_at }}</p>
+
+                                <!-- Display attachment and provide download link -->
+                                {% if report.attachment %}
+                                    <a href="{{ report.attachment.url }}" target="_blank" class="btn btn-primary btn-sm">View PDF</a>
+                                    <a href="{{ report.attachment.url }}" download class="btn btn-secondary btn-sm">Download PDF</a>
+                                {% endif %}
+
+                                <!-- Button to reply to the report -->
+                                <a href="{% url 'send_reply' report.id %}" class="btn btn-info btn-sm mt-2">Reply</a>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <p>No reports available at the moment.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('[id^="others"]').forEach(checkbox => {
+            checkbox.addEventListener('change', (e) => {
+                const input = document.querySelector(`#${checkbox.id.replace('others', 'otherInput')}`);
+                input.disabled = !checkbox.checked;
+            });
+        });
+    </script>
+
+        <!-- Logout Confirmation -->
+        <script>
+            document.getElementById("logout-button").addEventListener("click", function (event) {
+                const userConfirmed = confirm("Are you sure you want to log out?");
+                if (!userConfirmed) {
+                    event.preventDefault();
+                }
+            });
+        </script>
+</body>
+</html>

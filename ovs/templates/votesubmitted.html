@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOTED SUBMITTED!</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0a3d62;
+            color: white;
+            text-align: center;
+            font-family: 'Kanit';
+            font-weight: 'Regular';
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .left-content {
+            max-width: 40%;
+        }
+        .logo {
+            margin-bottom: 20px;
+        }
+        .contact-icons img {
+            margin: 0 10px;
+        }
+        .bold-text {
+            font-weight: bold;
+            font-size: xx-large;
+        }
+        .ty {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: medium;
+        }
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .left-content, .person-image {
+                width: 80%;
+                margin-bottom: 20px;
+            }
+            .contact-icons img {
+                margin: 0 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-content">
+            <img src="{% static 'media/logo2.png' %}" height="70" width="70" class="logo">
+            <p class="bold-text">ONLINE VOTING SYSTEM</p>
+            <p class="ty">THANK YOU FOR VOTING!</p>
+            <a href="{% url 'index' %}" class="btn btn-primary">RETURN TO HOMEPAGE</a>
+            <br><br>
+            <p class="ty">CONTACT US ON:</p>
+            <div class="contact-icons">
+                <img src="{% static 'media/twitter.png' %}" height="45" width="55">
+                <img src="{% static 'media/fb.png' %}" height="40" width="42">
+                <img src="{% static 'media/insta.png' %}" height="40" width="42">
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
