@@ -113,6 +113,13 @@ def login_form_view(request):
     if request.user.is_authenticated:
         return redirect('user')  
     
+    if request.session.get('role') == "admin":
+        return redirect('adminnform')  
+    
+    if request.session.get('role') == "comelec":
+        return redirect('comelec') 
+        
+        
     form = LoginForm()
     if request.method == 'POST':
         uid = request.POST.get('uid')  # User ID from form
@@ -338,10 +345,7 @@ def dashboard(request):
 
 
 # Index (homepage) view
-def index(request):
-    if request.user.is_authenticated:
-        return redirect('user')  
-
+def index(request): 
     return render(request, 'homepage.html')
 
 
