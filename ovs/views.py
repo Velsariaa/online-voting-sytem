@@ -3,6 +3,9 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.cache import never_cache
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from .forms import (
     adminnform as AdminForm,
     registrationform as RegistrationForm,
@@ -103,8 +106,14 @@ def registration_form_view(request):
 
 
 # Login view for all users (Admin, COMELEC, User)
+@never_cache
 def login_form_view(request):
+  
+    if request.user.is_authenticated:
+        return redirect('user')  
+
     form = LoginForm()
+
     if request.method == 'POST':
         uid = request.POST.get('uid')  # User ID from form
         password = request.POST.get('password')  # Password from form
