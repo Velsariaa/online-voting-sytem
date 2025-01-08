@@ -72,8 +72,8 @@
         }
 
         .form-control {
-            background-color: #0a3859;
-            color: #fff;
+            background-color: #0a3859 !important;
+            color: #fff !important;
             border: none;
             border-radius: 5px;
             padding: 8px;
@@ -81,6 +81,8 @@
         }
 
         .form-control:focus {
+            background-color: #0a3859 !important;
+            color: #fff !important;
             box-shadow: none;
         }
 
@@ -136,6 +138,7 @@
         .vote-button:hover, .apply-button:hover {
             opacity: 0.9;
         }
+
     </style>
 </head>
 <body>
@@ -175,22 +178,22 @@
                 <!-- Form Fields -->
                 <form>
                     <label for="uid">USER ID:</label>
-                    <input type="text" id="uid" class="form-control">
+                    <input type="text" id="uid" class="form-control" value="{{ user_details.uid }}" readonly>
 
                     <label for="fname">FIRST NAME:</label>
-                    <input type="text" id="fname" class="form-control">
+                    <input type="text" id="fname" class="form-control" value="{{ user_details.fname }}" readonly>
 
                     <label for="mname">MIDDLE NAME:</label>
-                    <input type="text" id="mname" class="form-control">
+                    <input type="text" id="mname" class="form-control" value="{{ user_details.mname }}" readonly>
 
                     <label for="lname">LAST NAME:</label>
-                    <input type="text" id="lname" class="form-control">
+                    <input type="text" id="lname" class="form-control" value="{{ user_details.lname }}" readonly>
 
                     <label for="idnum">ID NUMBER:</label>
-                    <input type="text" id="idnum" class="form-control">
+                    <input type="text" id="idnum" class="form-control" value="{{ user_details.idnum }}" readonly>
 
                     <!-- Logout Button -->
-                    <a href="{% url 'loginform' %}" class="btn btn-danger mt-3 w-100" role="button">LOG OUT</a>
+                    <a href="{% url 'logout' %}" class="btn btn-danger mt-3 w-100" role="button">LOG OUT</a>
                 </form>
             </div>
         </div>
