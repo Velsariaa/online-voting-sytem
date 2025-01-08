@@ -1,6 +1,7 @@
 from django import forms
-from .models import adminnform, registrationform, loginform, contactform, candidacy_form, credentialsform, resetpass, comelecform, voteform
+from .models import adminnform, registrationform, loginform, contactform, credentialsform, resetpass, comelecform, voteform
 from django.forms import ModelForm
+from .models import Candidate
 
 
 #admin
@@ -36,10 +37,15 @@ class contactform(forms.ModelForm):
         fields = ['fn', 'ln', 'cont', 'emailad', 'feedback']
 
 #candidacyform
-class candidacyform(forms.ModelForm):
+# class candidacyform(forms.ModelForm):
+#     class Meta:
+#         model = candidacy_form
+#         fields = ['fullname', 'position', 'cotn', 'emailaddr', 'birth', 'statement']
+
+class Candidacyform(forms.ModelForm):
     class Meta:
-        model = candidacy_form
-        fields = ['fullname', 'position', 'cotn', 'emailaddr', 'birth', 'statement']
+        model = Candidate
+        fields = ['fullname', 'cotn', 'emailaddr', 'birth', 'position', 'statement', 'credential1', 'credential2', 'credential3', 'credential4']
 
 #credentials
 class credentialsform(forms.ModelForm):
@@ -105,3 +111,8 @@ class voteform(forms.ModelForm):
     vote3 = forms.ChoiceField(choices=[], widget=forms.RadioSelect())
 
         
+class CandidateForm(forms.ModelForm):
+    class Meta:
+        model = Candidate
+        fields = ['fullname', 'cotn', 'emailaddr', 'birth', 'position', 'statement', 
+                  'credential1', 'credential2', 'credential3', 'credential4']
