@@ -51,7 +51,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'ovs.middleware.SessionValidationMiddleware',
+    #'ovs.middleware.SessionValidationMiddleware',
 ]
 
 ROOT_URLCONF = 'cpetovs.urls'
