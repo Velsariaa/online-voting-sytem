@@ -1,10 +1,10 @@
-# To run the Django application, use the following command:
+To run the Django application, use the following command:
 
-# pip install mysqlclient
-# pip install django
-# pip install Pillow
-# python manage.py migrate
-# python manage.py runserver
+pip install mysqlclient
+pip install django
+pip install Pillow
+python manage.py migrate
+python manage.py runserver
 
 To create a superuser:
 
